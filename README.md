@@ -2,5 +2,6 @@
 
 Source: https://github.com/hogeschool/INFDEV02-8-Functional-Programming-
 
-To compile: `ghc --make Parser.hs`__
+To compile: `ghc --make Parser.hs`
+
 To execute: `cat [your program code] | ./Parser`
