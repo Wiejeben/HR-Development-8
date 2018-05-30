@@ -6,7 +6,7 @@
   "author": "Maarten de Graaf <wiejeben@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node main.ts"
+    "start": "ts-node src/main.ts"
   },
   "dependencies": {
     "ts-node": "^6.0.5",
