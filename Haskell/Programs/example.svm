@@ -23,18 +23,18 @@ not reg1
 jc else reg1
 
 //move back x into reg1 (it has been overwritten)
-// mov reg1 [15]
+mov reg1 [15]
 
 // x -= 1
-// sub reg1 1
+sub reg1 1
 
 // skip the else block
-// jmp endif
-// #else
+jmp endif
+#else
 
 // x += 1
-// add reg1 1
-// #endif
+add reg1 1
+#endif
 
 // update the variable
-// mov [15] reg1
+mov [15] reg1
