@@ -1,0 +1,15 @@
+{
+  "name": "HR-Development-8",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "repository": "https://github.com/Wiejeben/HR-Development-8",
+  "author": "Maarten de Graaf <wiejeben@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node main.ts"
+  },
+  "dependencies": {
+    "ts-node": "^6.0.5",
+    "typescript": "^2.8.3"
+  }
+}
