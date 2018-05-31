@@ -1,17 +1,17 @@
-type List<a> = ({ kind: 'empty' } | { kind: 'cons', head: a, tail: List<a> }) & {
+export type List<a> = ({ kind: 'empty' } | { kind: 'cons', head: a, tail: List<a> }) & {
     count: (this: List<a>) => number
     toString: (this: List<a>) => string
     equals: (this: List<a>, l: List<a>) => boolean
 };
 
 // Helpers
-const Empty = <a>(): List<a> => ({
+export const Empty = <a>(): List<a> => ({
     kind: 'empty',
     count: (): number => 0,
     toString: (): string => '',
     equals: function (l: List<a>): boolean { return match(this)(l) }
 });
-const Cons = <a>(head: a) => (tail: List<a>): List<a> => ({
+export const Cons = <a>(head: a) => (tail: List<a>): List<a> => ({
     kind: 'cons',
     head: head,
     tail: tail,
@@ -28,10 +28,11 @@ const match = <a>(l1: List<a>) => (l2: List<a>): boolean => (
     l1.head === l2.head && match(l1.tail)(l2.tail)
 )
 
-const foo = (): List<number> => Cons(0)(Cons(1)(Cons(2)(Cons(3)(Empty()))))
-const bar = (): List<number> => Cons(2)(Cons(4)(Cons(3)(Cons(1)(Empty()))))
-const baz = (): List<number> => Cons(0)(Cons(1)(Cons(2)(Cons(2)(Cons(1)(Cons(0)(Empty()))))))
-const qux = (): List<string> => Cons('a')(Cons('a')(Cons('a')(Cons('a')(Cons('b')(Cons('b')(Cons('c')(Cons('c')(Cons('z')(Empty())))))))))
+export const foo = (): List<number> => Cons(0)(Cons(1)(Cons(2)(Cons(3)(Empty()))))
+export const bar = (): List<number> => Cons(2)(Cons(4)(Cons(3)(Cons(1)(Empty()))))
+export const baz = (): List<number> => Cons(0)(Cons(1)(Cons(2)(Cons(2)(Cons(1)(Cons(0)(Empty()))))))
+export const qux = (): List<string> => Cons('a')(Cons('a')(Cons('a')(Cons('a')(Cons('b')(Cons('b')(Cons('c')(Cons('c')(Cons('z')(Empty())))))))))
+export const quux = (): List<number> => Cons(3)(Cons(5)(Cons(4)(Cons(-1)(Cons(2)(Cons(2)(Empty()))))));
 
 // Exercise 1: Implement a function that returns the last element in the list.
 const last = <a>(l: List<a>): a => (l.kind === 'cons') ? (l.tail.kind === 'empty') ? l.head : last(l.tail) : undefined;
@@ -72,10 +73,12 @@ const shift = (l: List<string>) => (n: number): List<string> =>
     (l.kind === 'empty') ? l : Cons(String.fromCharCode(((l.head.charCodeAt(0) - 'a'.charCodeAt(0) + n) % 26) + 'a'.charCodeAt(0)))(shift(l.tail)(n))
 
 
-console.log('Exercise 1:', last(foo()))
-console.log('Exercise 2:', rev(foo()).toString())
-console.log('Exercise 3:', append(foo())(bar()).toString());
-console.log('Exercise 4:', nth(3)(bar()))
-console.log('Exercise 5:', palindrome(baz()))
-console.log('Exercise 6:', compress(qux()).toString())
-console.log('Exercise 7:', shift(qux())(1).toString())
+export const result = () => {
+    console.log('Exercise 1:', last(foo()))
+    console.log('Exercise 2:', rev(foo()).toString())
+    console.log('Exercise 3:', append(foo())(bar()).toString());
+    console.log('Exercise 4:', nth(3)(bar()))
+    console.log('Exercise 5:', palindrome(baz()))
+    console.log('Exercise 6:', compress(qux()).toString())
+    console.log('Exercise 7:', shift(qux())(1).toString())
+}
