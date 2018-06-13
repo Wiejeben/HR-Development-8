@@ -44,7 +44,7 @@ describe('exercise 7', () => {
 
 describe('exercise 8', () => {
     it('should return a binary string reassembling the number 6', () => {
-        expect(toBinary(6)).toBe('1101')
+        expect(toBinary(6)).toBe('110')
     })
 })
 
