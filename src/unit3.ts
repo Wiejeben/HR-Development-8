@@ -1,4 +1,4 @@
-import { Cons, Empty, List, quux } from './unit2';
+import { Cons, Empty, List, quux, baz } from './unit2';
 
 interface Tuple<a, b> {
     fst: a,
@@ -20,6 +20,28 @@ let splitAt = <a>(i: number) => (l: List<a>): Tuple<List<a>, List<a>> =>
             ((t: Tuple<List<a>, List<a>>): Tuple<List<a>, List<a>> => Tuple<List<a>, List<a>>(Cons(l.head)(t.fst))(t.snd))(splitAt<a>(i - 1)(l.tail)) :
         undefined;
 
+/**
+ * Exercise 2:
+ * Implement a function that merges together two sorted lists into a single sorted list.
+ */
+const merge = (l1: List<number>) => (l2: List<number>): List<number> => {
+    if (l1.kind === 'empty') {
+        return l1;
+    }
+
+    if (l2.kind === 'empty') {
+        return l2;
+    }
+
+    if (l1.head <= l2.head) {
+        return Cons(l1.head)(merge(l1.tail)(l2))
+    } else {
+        return Cons(l2.head)(merge(l1)(l2.tail))
+    }
+}
+
 const splitAtResult = splitAt(3)(quux());
 console.log('Exercise 1:', splitAtResult.fst.toString(), splitAtResult.snd.toString());
-
+console.log(quux().toString());
+console.log(baz().toString());
+// console.log('Exercise 2:', merge(quux())(baz()).toString())
