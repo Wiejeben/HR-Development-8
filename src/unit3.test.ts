@@ -75,8 +75,7 @@ describe('exercise 5', () => {
         expect(evaluate2({ kind: 'divide', x: ExprValue(5), y: ExprValue(10) })(Empty())).toEqual(0.5)
     })
 
-    // it('should find value based on variable', () => {
-
-    //     evaluate2({ kind: 'variable', name: 'meaningOfLife' })(Cons(Tuple<string, number>('meaningOfLife')(42))(Empty()))
-    // })
+    it('should find value based on variable', () => {
+        expect(evaluate2({ kind: 'variable', name: 'meaningOfLife' })(Cons(Tuple<string, number>('meaningOfLife')(42))(Empty()))).toBe(42)
+    })
 })
