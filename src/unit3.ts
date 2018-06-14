@@ -24,24 +24,8 @@ export const splitAt = <a>(i: number) => (l: List<a>): Tuple<List<a>, List<a>> =
  * Exercise 2:
  * Implement a function that merges together two sorted lists into a single sorted list.
  */
-export const merge = (l1: List<number>) => (l2: List<number>): List<number> => {
-    if (l1.kind === 'empty') {
-        return l1;
-    }
-
-    if (l2.kind === 'empty') {
-        return l2;
-    }
-
-    if (l1.head <= l2.head) {
-        return Cons(l1.head)(merge(l1.tail)(l2))
-    } else {
-        return Cons(l2.head)(merge(l1)(l2.tail))
-    }
-}
-
-// const splitAtResult = splitAt(3)(quux());
-// console.log('Exercise 1:', splitAtResult.fst.toString(), splitAtResult.snd.toString());
-// console.log(quux().toString());
-// console.log(baz().toString());
-// console.log('Exercise 2:', merge(quux())(baz()).toString())
+export const merge = (l1: List<number>) => (l2: List<number>): List<number> =>
+    (l1.kind === 'empty') ? l2 :
+        (l2.kind === 'empty') ? l1 :
+            (l1.head <= l2.head) ? Cons(l1.head)(merge(l1.tail)(l2)) :
+                Cons(l2.head)(merge(l1)(l2.tail))
