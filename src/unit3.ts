@@ -47,3 +47,66 @@ export const mergeSort = <a>(l: List<a>): List<a> => {
 
     return merge<a>(mergeSort<a>(splitted.fst))(mergeSort<a>(splitted.snd));
 }
+
+export type Expr = {
+    kind: 'value',
+    value: number,
+} | {
+    kind: 'variable',
+    name: string,
+} | {
+    kind: 'addition',
+    x: Expr,
+    y: Expr,
+} | {
+    kind: 'subtract',
+    x: Expr,
+    y: Expr,
+} | {
+    kind: 'multiply',
+    x: Expr,
+    y: Expr,
+} | {
+    kind: 'divide',
+    x: Expr,
+    y: Expr
+}
+
+export const ExprValue = (value: number): Expr => ({ kind: 'value', value: value })
+
+/**
+ * Exercise 4:
+ * Implement a function that allows to evaluate arithmetic expressions.
+ */
+export const evaluate = (exp: Expr): number => {
+
+    if (exp.kind === 'addition') {
+        return evaluate(exp.x) + evaluate(exp.y)
+    } else if (exp.kind === 'subtract') {
+        return evaluate(exp.x) - evaluate(exp.y)
+    } else if (exp.kind === 'multiply') {
+        return evaluate(exp.x) * evaluate(exp.y)
+    } else if (exp.kind === 'divide') {
+        return evaluate(exp.x) / evaluate(exp.y)
+    } else if (exp.kind === 'value') {
+        return exp.value
+    }
+
+    throw Error('Expression kind not supported')
+}
+
+/**
+ * Exercise 5:
+ * Implement a function that extends the previous eval function by supporting also variables.
+ * Variables are another case of the union. Evaluating a variable means looking it up in the stack.
+ * A stack is a list of tuple mapping a variable name to its value. If the lookup is successful eval
+ * returns the value of the variable, otherwise it throws an error.
+ */
+export const evaluate2 = (exp: Expr) => (stack: List<Tuple<string, number>>): number => {
+
+    if (exp.kind !== 'variable') {
+        return evaluate(exp);
+    }
+
+    return exp;
+}

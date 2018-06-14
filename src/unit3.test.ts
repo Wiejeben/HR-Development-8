@@ -1,5 +1,5 @@
 import { List, Cons, Empty } from './unit2';
-import { Tuple, splitAt, merge, mergeSort } from './unit3'
+import { Tuple, Expr, ExprValue, splitAt, merge, mergeSort, evaluate, evaluate2 } from './unit3'
 
 const foo = (): List<number> => Cons(3)(Cons(5)(Cons(4)(Cons(-1)(Cons(2)(Cons(2)(Empty()))))))
 const bar = (): List<number> => Cons(2)(Cons(4)(Cons(5)(Cons(6)(Empty()))))
@@ -30,4 +30,53 @@ describe('exercise 3', () => {
 
         expect(JSON.stringify(mergeSort(bax()))).toEqual(JSON.stringify(result))
     })
+})
+
+describe('exercise 4', () => {
+    it('should give back my value', () => {
+        expect(evaluate(ExprValue(10))).toBe(10)
+    })
+
+    it('should apply addition', () => {
+        expect(evaluate({ kind: 'addition', x: ExprValue(10), y: ExprValue(15) })).toEqual(25)
+    })
+
+    it('should subtract', () => {
+        expect(evaluate({ kind: 'subtract', x: ExprValue(10), y: ExprValue(15) })).toEqual(-5)
+    })
+
+    it('should multiply', () => {
+        expect(evaluate({ kind: 'multiply', x: ExprValue(10), y: ExprValue(15) })).toEqual(150)
+    })
+
+    it('should divide', () => {
+        expect(evaluate({ kind: 'divide', x: ExprValue(5), y: ExprValue(10) })).toEqual(0.5)
+    })
+})
+
+describe('exercise 5', () => {
+    it('should give back my value', () => {
+        expect(evaluate2(ExprValue(10))(Empty())).toBe(10)
+    })
+
+    it('should apply addition', () => {
+        expect(evaluate2({ kind: 'addition', x: ExprValue(10), y: ExprValue(15) })(Empty())).toEqual(25)
+    })
+
+    it('should subtract', () => {
+        expect(evaluate2({ kind: 'subtract', x: ExprValue(10), y: ExprValue(15) })(Empty())).toEqual(-5)
+    })
+
+    it('should multiply', () => {
+        expect(evaluate2({ kind: 'multiply', x: ExprValue(10), y: ExprValue(15) })(Empty())).toEqual(150)
+    })
+
+    it('should divide', () => {
+        expect(evaluate2({ kind: 'divide', x: ExprValue(5), y: ExprValue(10) })(Empty())).toEqual(0.5)
+    })
+
+    // it('should find value based on variable', () => {
+
+    //     evaluate2({ kind: 'variable', name: 'meaningOfLife' })(Cons(Tuple<string, number>('meaningOfLife')(42))(Empty()))
+    // })
 })
