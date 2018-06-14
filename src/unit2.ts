@@ -37,7 +37,7 @@ export const quux = (): List<number> => Cons(3)(Cons(5)(Cons(4)(Cons(-1)(Cons(2)
 // Exercise 1: Implement a function that returns the last element in the list.
 export const last = <a>(l: List<a>): a => (l.kind === 'cons') ? (l.tail.kind === 'empty') ? l.head : last(l.tail) : undefined;
 
-// Exercise 2: Implement a functino that creates a list with the elements of l in reverse order.
+// Exercise 2: Implement a function that creates a list with the elements of l in reverse order.
 export const concat = <a>(l1: List<a>) => (l2: List<a>): List<a> => (l1.kind === 'empty') ? l2 : Cons(l1.head)(concat(l1.tail)(l2));
 export const rev = <a>(l: List<a>): List<a> => (l.kind === 'empty') ? l : concat(rev(l.tail))(Cons(l.head)(Empty()))
 
@@ -71,14 +71,3 @@ export const compress = <a>(l: List<a>): List<a> =>
  */
 export const shift = (l: List<string>) => (n: number): List<string> =>
     (l.kind === 'empty') ? l : Cons(String.fromCharCode(((l.head.charCodeAt(0) - 'a'.charCodeAt(0) + n) % 26) + 'a'.charCodeAt(0)))(shift(l.tail)(n))
-
-
-// export const result = () => {
-//     console.log('Exercise 1:', last(foo()))
-//     console.log('Exercise 2:', rev(foo()).toString())
-//     console.log('Exercise 3:', append(foo())(bar()).toString());
-//     console.log('Exercise 4:', nth(3)(bar()))
-//     console.log('Exercise 5:', palindrome(baz()))
-//     console.log('Exercise 6:', compress(qux()).toString())
-//     console.log('Exercise 7:', shift(qux())(1).toString())
-// }

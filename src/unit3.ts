@@ -1,11 +1,11 @@
 import { Cons, Empty, List, quux, baz } from './unit2';
 
-interface Tuple<a, b> {
+export interface Tuple<a, b> {
     fst: a,
     snd: b,
 };
 
-const Tuple = <a, b>(fst: a) => (snd: b): Tuple<a, b> => ({ fst: fst, snd: snd });
+export const Tuple = <a, b>(fst: a) => (snd: b): Tuple<a, b> => ({ fst: fst, snd: snd });
 
 /**
  * Exercise 1:
@@ -13,7 +13,7 @@ const Tuple = <a, b>(fst: a) => (snd: b): Tuple<a, b> => ({ fst: fst, snd: snd }
  * position 0 to position i included, and the second one containing all the remaining elements. The two resulting
  * lists are returned in a tuple. For example split 3 [3;5;4;-1;2;2] = fst:  [3;5;4;-1], snd: [2;2].
  */
-let splitAt = <a>(i: number) => (l: List<a>): Tuple<List<a>, List<a>> =>
+export const splitAt = <a>(i: number) => (l: List<a>): Tuple<List<a>, List<a>> =>
     (l.kind === 'cons') ?
         (i <= 0) ?
             Tuple<List<a>, List<a>>(Cons(l.head)(Empty()))(l.tail) :
@@ -24,7 +24,7 @@ let splitAt = <a>(i: number) => (l: List<a>): Tuple<List<a>, List<a>> =>
  * Exercise 2:
  * Implement a function that merges together two sorted lists into a single sorted list.
  */
-const merge = (l1: List<number>) => (l2: List<number>): List<number> => {
+export const merge = (l1: List<number>) => (l2: List<number>): List<number> => {
     if (l1.kind === 'empty') {
         return l1;
     }
@@ -40,8 +40,8 @@ const merge = (l1: List<number>) => (l2: List<number>): List<number> => {
     }
 }
 
-const splitAtResult = splitAt(3)(quux());
-console.log('Exercise 1:', splitAtResult.fst.toString(), splitAtResult.snd.toString());
-console.log(quux().toString());
-console.log(baz().toString());
+// const splitAtResult = splitAt(3)(quux());
+// console.log('Exercise 1:', splitAtResult.fst.toString(), splitAtResult.snd.toString());
+// console.log(quux().toString());
+// console.log(baz().toString());
 // console.log('Exercise 2:', merge(quux())(baz()).toString())
