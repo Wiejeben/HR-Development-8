@@ -14,7 +14,7 @@ export const allNumberRangeRev = (lower: number) => (upper: number): string =>
 
 // Exercise 5: Implement a function that returns a string containing all even numbers between lower and upper.
 export const allEvenRange = (lower: number) => (upper: number): string =>
-    (lower > upper) ? '' : (lower % 2 !== 0) ? allEvenRange(lower + 1)(upper) : lower.toString() + ' ' + allEvenRange(lower + 1)(upper)
+    (lower <= upper) ? ((lower % 2 === 0) ? lower.toString() + ((lower >= upper) ? '' : ' ') : '') + allEvenRange(lower + 1)(upper) : ''
 
 // Exercise 6: Implement a function that returns a string containing length asterisks.
 export const drawLine = (length: number): string => (length <= 0) ? '' : '*' + drawLine(length - 1);

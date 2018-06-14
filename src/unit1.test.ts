@@ -26,7 +26,7 @@ describe('exercise 4', () => {
 
 describe('exercise 5', () => {
     it('should return a string containing all even numbers between 5 and 10', () => {
-        expect(allEvenRange(5)(10)).toBe('6 8 10 ')
+        expect(allEvenRange(5)(10)).toBe('6 8 10')
     })
 })
 
