@@ -102,8 +102,8 @@ export const evaluate = (exp: Expr): number => {
  * A stack is a list of tuple mapping a variable name to its value. If the lookup is successful eval
  * returns the value of the variable, otherwise it throws an error.
  */
-export const evaluate2 = (exp: Expr) => (stack: List<Tuple<string, number>>): number =>
+export const evaluate2 = (exp: Expr) => (stack: List<ITuple<string, number>>): number =>
     (exp.kind == 'variable') ? lookup(exp.name)(stack) : evaluate(exp)
 
-const lookup = (needle: string) => (haystack: List<Tuple<string, number>>): number =>
+const lookup = (needle: string) => (haystack: List<ITuple<string, number>>): number =>
     (haystack.kind === 'empty') ? undefined : (haystack.head.fst === needle) ? haystack.head.snd : lookup(needle)(haystack.tail);
